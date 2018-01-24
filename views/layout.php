@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
-  
-<!-- Mirrored from swin-themes.com/html/fooday/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Sep 2017 09:09:44 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title><?=$title?></title>
     <!-- Bootstrap CSS-->
     <link href="public/source/assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome-->
     <link rel="stylesheet" href="public/source/assets/vendors/font-awesome/css/font-awesome.min.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries-->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file://-->
-    <!-- IE 9-->
-    <!-- Vendors-->
     <link rel="stylesheet" href="public/source/assets/vendors/flexslider/flexslider.min.css">
     <link rel="stylesheet" href="public/source/assets/vendors/swipebox/css/swipebox.min.css">
     <link rel="stylesheet" href="public/source/assets/vendors/slick/slick.min.css">
