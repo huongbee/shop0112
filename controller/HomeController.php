@@ -7,9 +7,11 @@ class HomeController extends Controller{
     function getIndex(){  
         $model = new HomeModel;
         $foods = $model->getFoodsToday();
+        $allFoods = $model->getAllFoods();
 
         $data = [
-            'foods'=>$foods
+            'foods'=>$foods,
+            'allFoods'=>$allFoods
         ];
         // echo "<pre>";
         // print_r($foods);
