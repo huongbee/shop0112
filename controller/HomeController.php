@@ -8,11 +8,14 @@ class HomeController extends Controller{
         $model = new HomeModel;
         $foods = $model->getFoodsToday();
 
-        echo "<pre>";
-        print_r($foods);
-        echo "</pre>";
-        die;
-        return $this->loadView('trangchu',"Trang chủ");
+        $data = [
+            'foods'=>$foods
+        ];
+        // echo "<pre>";
+        // print_r($foods);
+        // echo "</pre>";
+        // die;
+        return $this->loadView('trangchu',"Trang chủ",$data);
     }
 
 }
