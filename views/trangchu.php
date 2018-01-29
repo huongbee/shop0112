@@ -141,21 +141,11 @@ $allFoods = $data['allFoods'];
 
             </div>
             <ul class="pagination pagination-lg">
+              <?php for($i=1; $i<=$data['tongSoTrang']; $i++):?>
               <li>
-                <a href="#">1</a>
+                <a href="./?page=<?=$i?>"><?=$i?></a>
               </li>
-              <li>
-                <a href="#">2</a>
-              </li>
-              <li>
-                <a href="#">3</a>
-              </li>
-              <li>
-                <a href="#">4</a>
-              </li>
-              <li>
-                <a href="#">5</a>
-              </li>
+              <?php endfor?>
             </ul>
 
           </div>
