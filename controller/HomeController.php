@@ -1,6 +1,8 @@
 <?php
 include_once 'Controller.php';
 include_once 'models/HomeModel.php';
+include_once 'helper/Pager.php';
+
 
 class HomeController extends Controller{
 
@@ -26,24 +28,14 @@ class HomeController extends Controller{
         $tongSoSP = $model->countSP();
         $tongSoSP = $tongSoSP->tongSP;
 
-        $tongSoTrang = ceil($tongSoSP/$soluong);
-        
+        $pager = new Pager($tongSoSP,$page,$soluong,5);
+        $pagination = $pager->showPagination();
+
         $allFoods = $model->getAllFoods($vitri,$soluong);
-
-        /**
-         * page =1  0,9
-         * page =2  9,9
-         * page =3  18,9
-         * page =4  27,9
-         *       5  36
-         *       6  45
-         *       7  54,9  54,55,56...62
-         */
-
         $data = [
             'foods'=>$foods,
             'allFoods'=>$allFoods,
-            'tongSoTrang'=>$tongSoTrang
+            'pagination'=>$pagination
         ];
         // echo "<pre>";
         // print_r($foods);

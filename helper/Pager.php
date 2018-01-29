@@ -21,12 +21,9 @@ class Pager{
 	}
 
 	public function showPagination(){
-		//p     		=3
-		//total 		=62
-		//so sp 1 page  = 9
-		//số trang hthi = 5
         $paginationHTML 	= '';
-        
+		
+		
 		if($this->_totalPage > 1){
 			$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			//echo $actual_link; die;
@@ -49,7 +46,7 @@ class Pager{
 				$end 	= "<li><a href='$actual_link?page=".$this->_totalPage."'>End</a></li>";
 			}
 
-			//5 < 7
+		
 			if($this->_nPageShow < $this->_totalPage){
 				
 				if($this->_currentPage == 1 ){
@@ -62,26 +59,25 @@ class Pager{
                 }
 				
 				else{
-					
+					// p=4 => s = 4-(11-1)/2 = -1
 					$startPage		= $this->_currentPage - ($this->_nPageShow-1)/2;
 
-					//7 + (5-1)/2 = 9
+					//4 + (11-1)/2 = 9
 					$endPage		= $this->_currentPage + ($this->_nPageShow-1)/2;
 
 					if($startPage < 1){
-						$endPage	= $endPage + 1;  // 5
-						$startPage 	= 1; //1
+						$endPage	= $endPage + 1; 
+						$startPage 	= 1; 
 					}
-					//9 > 11
 					if($endPage > $this->_totalPage){
-						$endPage	= $this->_totalPage; //7
-
-						//7 - 5 +1 = 3	
-						$startPage 	= $endPage - $this->_nPageShow + 1; //7-10+1=-2
+						$endPage	= $this->_totalPage;
+	
+						$startPage 	= $endPage - $this->_nPageShow + 1;
 					}
 				}
 
-            }
+			}
+			
             //$this->_nPageShow >= $this->_totalPage
 			else{
 				$startPage		= 1;
@@ -92,7 +88,8 @@ class Pager{
 			for($i = $startPage; $i <= $endPage; $i++){
 				if($i == $this->_currentPage) {
 					$listPages .= "<li class='active'><a href='#'>".$i.'</a>';
-				}else{
+				}
+				else{
 					$listPages .= "<li><a href='$actual_link?page=".$i."'>".$i.'</a>';
 				}
 			}
