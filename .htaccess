@@ -10,4 +10,5 @@ RewriteRule ^lien-he.html$ contact.php
 RewriteRule ^error.html$ 404.php
 
 ErrorDocument 404 /shop0112/error.html
+ErrorDocument 500 /shop0112/error.html
 
