@@ -108,7 +108,7 @@ $allFoods = $data['allFoods'];
                 <div class="col-md-4 col-sm-6 col-xs-12">
                   <div class="blog-item item swin-transition">
                     <div class="block-img">
-                      <img src="public/source/assets/images/hinh_mon_an/<?=$f->image?>" alt="" class="img img-responsive" style="height:300px">
+                      <img src="public/source/assets/images/hinh_mon_an/<?=$f->image?>" alt="" class="img img-responsive" style="height:250px">
                       <div class="block-circle price-wrapper">
                         <span class="price woocommerce-Price-amount amount">
                             <?=number_format($f->price)?>
