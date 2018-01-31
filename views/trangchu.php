@@ -68,7 +68,7 @@ $allFoods = $data['allFoods'];
                         <div class="item-left">
                           <img src="public/source/assets/images/hinh_mon_an/<?=$f->image?>" alt="" class="img img-responsive">
                           <div class="content-wrapper">
-                            <a href="chi-tiet-mon-an.html" class="title">
+                            <a href="<?=$f->url?>-<?=$f->id?>.html" class="title">
                               <?=$f->name?>
                             </a>
                             <div class="dot">...................</div>
@@ -116,7 +116,7 @@ $allFoods = $data['allFoods'];
                         </span>
                       </div>
                       <div class="group-btn">
-                        <a href="chi-tiet-mon-an.html" class="swin-btn btn-link">
+                        <a href="<?=$f->url?>-<?=$f->id?>.html" class="swin-btn btn-link">
                           <i class="icons fa fa-link"></i>
                         </a>
                         <a href="javascript:void(0)" class="swin-btn btn-add-to-card">
@@ -126,7 +126,7 @@ $allFoods = $data['allFoods'];
                     </div>
                     <div class="block-content">
                       <h5 class="title">
-                        <a href="chi-tiet-mon-an.html">
+                        <a href="<?=$f->url?>-<?=$f->id?>.html">
                           <?=$f->name?>
                         </a>
                       </h5>
