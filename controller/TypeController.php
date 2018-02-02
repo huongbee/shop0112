@@ -7,8 +7,10 @@ class TypeController extends Controller{
         $model = new TypeModel;
         $types = $model->getAllType();
 
+        $foodsFirstType = $model->getFoodsFirstType();
         $data = [
-            'types'=>$types
+            'types'=>$types,
+            'foodsFirstType'=>$foodsFirstType
         ];
         return $this->loadView('mon-an-theo-loai','Món ăn theo loại',$data);
     }
