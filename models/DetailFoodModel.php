@@ -10,4 +10,13 @@ class DetailFoodModel extends DBConnect{
                 AND url= '$alias' ";
         return $this->loadOneRow($sql);
     }
+    function selectFoodSameType($id_type){
+        $sql = "SELECT f.*, p.url 
+                FROM foods f
+                INNER JOIN page_url p
+                ON f.id_url = p.id 
+                WHERE id_type=$id_type";
+                
+        return $this->loadMoreRows($sql);
+    }
 }

@@ -14,15 +14,18 @@ class DetailFoodController extends Controller{
             header('Location:error.html');
             return;
         }
+        $foods = $model->selectFoodSameType($food->id_type);
         // echo "<pre>";
         // print_r($food);
         // echo "</pre>";
         // die;
         $data = [
-            'food'=>$food
+            'food'=>$food,
+            'foods'=>$foods
         ];
         return $this->loadView('chitiet',"Chi tiết",$data);
     }
+    
 }
 
 ?>
