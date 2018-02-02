@@ -1,9 +1,16 @@
 <?php
 include_once 'Controller.php';
+include_once 'model/TypeModel.php';
 
 class TypeController extends Controller{
     function getIndex(){
-        return $this->loadView('mon-an-theo-loai','Món ăn theo loại');
+        $model = new TypeModel;
+        $types = $model->getAllType();
+
+        $data = [
+            'types'=>$types
+        ];
+        return $this->loadView('mon-an-theo-loai','Món ăn theo loại',$data);
     }
 }
 
