@@ -83,7 +83,7 @@ $foods = $data['foods'];
             <?php foreach($foods as $f):?>
             <div class="blog-item item swin-transition">
               <div class="block-img">
-                <img src="public/source/assets/images/hinh_mon_an/<?=$f->image?>" alt="" class="img img-responsive">
+                <img src="public/source/assets/images/hinh_mon_an/<?=$f->image?>" alt="" class="img img-responsive" style="height:250px">
                 <div class="block-circle price-wrapper">
                   <span class="price woocommerce-Price-amount amount">
                     <?=number_format($f->price)?><span class="price-symbol"> vnd</span>

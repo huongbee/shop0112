@@ -14,7 +14,7 @@ class DetailFoodController extends Controller{
             header('Location:error.html');
             return;
         }
-        $foods = $model->selectFoodSameType($food->id_type);
+        $foods = $model->selectFoodSameType($food->id_type,$food->id);
         // echo "<pre>";
         // print_r($food);
         // echo "</pre>";
