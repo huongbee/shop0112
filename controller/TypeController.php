@@ -1,6 +1,6 @@
 <?php
 include_once 'Controller.php';
-include_once 'model/TypeModel.php';
+include_once 'models/TypeModel.php';
 
 class TypeController extends Controller{
     function getIndex(){
