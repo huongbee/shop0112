@@ -29,11 +29,11 @@ $types = $data['types'];
                     <div class="swin-sc swin-sc-product products-02 carousel-02">
                         <div class="row">
                             <div class="col-md-2"></div>
-                            <div data-slide-toshow="4" class="cat-wrapper-02 main-slider col-md-8 ">
+                            <div data-slide-toshow="5" class="cat-wrapper-02 main-slider col-md-8 ">
                                 <?php foreach($types as $t):?>
                                 <div class="item">
                                     <div class="cat-icons">
-                                        <i class="icons swin-icon-pasta"></i>
+                                        <i class="icons <?=$t->icon?>"></i>
                                         <h5 class="cat-title"><?=$t->name?></h5>
                                     </div>
                                 </div>
