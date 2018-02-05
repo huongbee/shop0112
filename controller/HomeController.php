@@ -44,6 +44,10 @@ class HomeController extends Controller{
         return $this->loadView('trangchu',"Trang chủ",$data);
     }
 
+    function getSearch(){
+        return $this->loadView('tim_kiem','Tìm kiếm sản phẩm');
+    }
+
 }
 
 

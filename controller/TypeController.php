@@ -20,7 +20,7 @@ class TypeController extends Controller{
         $model = new TypeModel;
         $result = $model->selectFoodsByType($idType);
         //print_r($result);
-        $this->callViewAjax('type',$result);
+        return $this->callViewAjax('type',$result);
     }
 }
 
