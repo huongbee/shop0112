@@ -16,8 +16,11 @@ class TypeController extends Controller{
     }
 
     function getFoodsByType(){
-        echo "Da nhan id = ";
-        echo $_GET['id'];
+        $idType = $_GET['id'];
+        $model = new TypeModel;
+        $result = $model->selectFoodsByType($idType);
+        //print_r($result);
+        $this->callViewAjax('type',$result);
     }
 }
 

@@ -46,7 +46,7 @@ $types = $data['types'];
 
                         <div class="products nav-slider">
 
-                            <div class="row slick-padding">
+                            <div class="row slick-padding result-type">
                                 <?php foreach($data['foodsFirstType'] as $f):?>
                                 <div class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="blog-item item swin-transition">
@@ -100,7 +100,11 @@ $types = $data['types'];
                     },
                     type: "GET",
                     success: function (result) {
-                        console.log(result)
+                        //console.log(result)
+                        if($.trim(result)==''){
+                            $('.result-type').html("<h3 style='text-align:center'>Món ăn đang được cập nhật</h3>");
+                        }
+                        else $('.result-type').html(result)
                     }
                 })
             })
