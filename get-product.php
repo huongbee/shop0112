@@ -1,5 +1,7 @@
 <?php
-echo "Da nhan id = ";
-echo $_GET['id'];
+include_once 'controller/TypeController.php';
+
+$c = new TypeController;
+return $c->getFoodsByType();
 
 ?>

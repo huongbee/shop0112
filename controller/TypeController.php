@@ -14,6 +14,11 @@ class TypeController extends Controller{
         ];
         return $this->loadView('mon-an-theo-loai','Món ăn theo loại',$data);
     }
+
+    function getFoodsByType(){
+        echo "Da nhan id = ";
+        echo $_GET['id'];
+    }
 }
 
 ?>
