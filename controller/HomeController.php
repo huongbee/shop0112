@@ -45,7 +45,16 @@ class HomeController extends Controller{
     }
 
     function getSearch(){
-        return $this->loadView('tim_kiem','Tìm kiếm sản phẩm');
+        $model = new HomeModel;
+        $data = $model->selectPromotionFoods();
+        return $this->loadView('tim_kiem','Tìm kiếm sản phẩm',$data);
+    }
+
+    function postSearch(){
+        $keyword = $_POST['keyword'];
+        $model = new HomeModel;
+        $result = $model->searchFoods($keyword);
+        return $this->callViewAjax('type',$result);
     }
 
 }

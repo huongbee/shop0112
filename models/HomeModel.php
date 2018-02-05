@@ -33,5 +33,17 @@ class HomeModel extends DBConnect{
                 AND f.promotion_price!=0";
         return $this->loadMoreRows($sql);
     }
+
+    function searchFoods($keyword){
+        $sql = "SELECT f.*, p.url 
+                FROM foods f
+                INNER JOIN page_url p
+                ON f.id_url = p.id 
+                WHERE f.name LIKE '%$keyword%'
+                OR f.detail LIKE '%$keyword%'
+                OR f.price = '$keyword'
+                "; //OR f.promotion_price = '$keyword'
+        return $this->loadMoreRows($sql);
+    }
 }
 ?>

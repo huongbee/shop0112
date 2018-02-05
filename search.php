@@ -2,4 +2,4 @@
 include_once './controller/HomeController.php';
 
 $c = new HomeController;
-return $c->getSearch();
+return isset($_POST['keyword']) ? $c->postSearch() : $c->getSearch();
