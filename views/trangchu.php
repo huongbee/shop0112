@@ -119,7 +119,7 @@ $allFoods = $data['allFoods'];
                         <a href="<?=$f->url?>-<?=$f->id?>.html" class="swin-btn btn-link">
                           <i class="icons fa fa-link"></i>
                         </a>
-                        <a href="javascript:void(0)" class="swin-btn btn-add-to-card">
+                        <a  class="swin-btn btn-add-to-card" data-id="<?=$f->id?>">
                           <i class="fa fa-shopping-basket"></i>
                         </a>
                       </div>

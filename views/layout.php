@@ -324,6 +324,27 @@
     </div>
     <!-- jQuery-->
     <script src="public/source/assets/vendors/jquery-1.10.2.min.js"></script>
+    
+    <script>
+      $(document).ready(function(){
+        $('.btn-add-to-card').click(function(){
+            var idSP = $(this).attr('data-id')
+            $.ajax({
+                url:"cart.php",
+                data:{
+                    id:idSP  // $_POST['id']
+                },
+                type:"POST",
+
+                success:function(result){ //result: response from server
+                    console.log(result)
+                }
+            })
+        })
+      })
+    </script>
+
+
     <!-- Bootstrap JavaScript-->
     <script src="public/source/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
     <!-- Vendors-->
@@ -351,6 +372,4 @@
     <script src="public/source/assets/js/elements.js"></script>
     <script src="public/source/assets/js/widget.js"></script>
   </body>
-
-<!-- Mirrored from swin-themes.com/html/fooday/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Sep 2017 09:12:42 GMT -->
 </html>

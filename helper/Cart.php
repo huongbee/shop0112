@@ -4,7 +4,8 @@ class Cart
 {
 	public $items = [];
 	public $totalQty = 0;
-	public $totalPrice = 0;
+    public $totalPrice = 0;
+    
 	public function __construct($oldCart=null){
 		if($oldCart){
 			$this->items = $oldCart->items;
