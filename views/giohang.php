@@ -1,4 +1,8 @@
+<?php
+// print_r($data);
+// die;
 
+?>
 <div class="page-container">
     <div data-bottom-top="background-position: 50% 50px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -50px;" class="page-title page-reservation">
     <div class="container">
@@ -29,42 +33,25 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php foreach($data->items as $sanpham):?>
                     <tr>
                         <td>
-                        <img src="public/source/assets/images/product/product-2b.jpg" width="250px">
-                        <p><br><b>Uncle Herschel's Favorite</b></p>
+                        <img src="public/source/assets/images/hinh_mon_an/<?=$sanpham['item']->image?>" width="150px">
+                        <p><br><b><?=$sanpham['item']->name?></b></p>
                         </td>
-                        <td>$25</td>
+                        <td><?=number_format($sanpham['item']->price)?> vnd</td>
                         <td>
                         <select name="product-qty" id="product-qty" class="form-control" width="50">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                        <?php for($i=1; $i<=5; $i++):?>
+                        <option value="<?=$i?>" <?=$i == $sanpham['qty'] ? "selected": ''?>><?=$i?></option>
+                        <?php endfor?>
                         </select>
                         </td>
-                        <td>$25</td>
+                        <td><?=number_format($sanpham['price'])?> vnd</td>
                         <td><a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o fa-2x"></i></a></td>
                     </tr>
-                    <tr>
-                        <td>
-                        <img src="public/source/assets/images/product/product-2b.jpg" width="250px">
-                        <p><br><b>Uncle Herschel's Favorite</b></p>
-                        </td>
-                        <td>$25</td>
-                        <td>
-                        <select name="product-qty" id="product-qty" class="form-control" width="50">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        </select>
-                        </td>
-                        <td>$25</td>
-                        <td><a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                    </tr>
+                    <?php endforeach?>
+
                     </tbody>
                 </table>     
                 
