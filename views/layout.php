@@ -322,9 +322,26 @@
       </div>
       
     </div>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+            <div class="modal-body">
+                <p>Đã thêm <b class='name-food'>...</b> vào giỏ hàng</p>
+                <p><a href="checkout.php">Xem giỏ hàng của bạn</a></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
     <!-- jQuery-->
     <script src="public/source/assets/vendors/jquery-1.10.2.min.js"></script>
-    
     <script>
       $(document).ready(function(){
         $('.btn-add-to-card').click(function(){
@@ -335,9 +352,10 @@
                     id:idSP  // $_POST['id']
                 },
                 type:"POST",
-
                 success:function(result){ //result: response from server
-                    console.log(result)
+                    //console.log(result)
+                    $('.name-food').html(result)
+                    $('#myModal').modal('show')
                 }
             })
         })
