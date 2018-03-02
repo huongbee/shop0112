@@ -28,6 +28,7 @@ class Cart
 		$this->totalPrice = ($this->totalPrice + $qty*$giohang['item']->price);
 		
 	}
+	
 	//update
 	public function update($item, $qty=1){
 		$giohang = [

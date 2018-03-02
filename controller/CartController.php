@@ -22,6 +22,12 @@ class CartController {
         echo $food->name;
         //print_r($_SESSION['cart']);
     }
+    function updateCart(){
+        echo $id = $_POST['id'];
+        echo $qty = $_POST['quantity'];
+        //update
+
+    }
 }
 
 

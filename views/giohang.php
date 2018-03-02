@@ -33,7 +33,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($data->items as $sanpham):?>
+                    <?php
+                        //print_r($data->items);
+                    ?>
+                    <?php foreach($data->items as $idSP => $sanpham):?>
                     <tr>
                         <td>
                         <img src="public/source/assets/images/hinh_mon_an/<?=$sanpham['item']->image?>" width="150px">
@@ -41,7 +44,7 @@
                         </td>
                         <td><?=number_format($sanpham['item']->price)?> vnd</td>
                         <td>
-                        <select name="product-qty" id="product-qty" class="form-control" width="50">
+                        <select name="product-qty" id="product-qty" class="form-control txtQty" width="20" data-id="<?=$idSP?>">
                         <?php for($i=1; $i<=10; $i++):?>
                         <option value="<?=$i?>" <?=$i == $sanpham['qty'] ? "selected": ''?>><?=$i?></option>
                         <?php endfor?>
@@ -151,3 +154,24 @@
     </section>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('.txtQty').change(function(){
+        var qty = $(this).val()
+        var idSP = $(this).attr('data-id')
+        var action = "update";
+        $.ajax({
+            url:"cart.php",
+            data:{
+                id:idSP , // $_POST['id']
+                quantity: qty, // $_POST['quantity]
+                action: action
+            },
+            type:"POST",
+            success:function(result){ 
+                console.log(result)
+            }
+        })
+    })
+})
+</script>
