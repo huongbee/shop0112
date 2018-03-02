@@ -345,7 +345,7 @@
     <script>
       $(document).ready(function(){
         $('.btn-add-to-card').click(function(){
-            var idSP = $(this).attr('data-id')
+            var idSP = $(this).attr('data-id') 
             $.ajax({
                 url:"cart.php",
                 data:{

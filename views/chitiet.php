@@ -52,7 +52,7 @@ $foods = $data['foods'];
               <div class="product-quanlity">
                 <form action="#">
                   <div class="input-group">
-                    <input type="text" name="quanlity" placeholder="" value="1" class="form-control">
+                    <input type="text" name="quanlity" placeholder="" value="1" class="form-control txtQty">
                     <a href="javascript:void(0)" class="quanlity-plus">
                       <i class="fa fa-plus"></i>
                     </a>
@@ -60,7 +60,7 @@ $foods = $data['foods'];
                       <i class="fa fa-minus"></i>
                     </a>
                   </div>
-                  <div class="add-to-cart">
+                  <div class="add-to-cart" data-id="<?=$food->id?>">
                     <a href="javascript:void(0)" class="swin-btn">
                       <span>Add To Cart</span>
                     </a>
@@ -93,7 +93,7 @@ $foods = $data['foods'];
                   <a href="<?=$f->url?>-<?=$f->id?>.html" class="swin-btn btn-link">
                     <i class="icons fa fa-link"></i>
                   </a>
-                  <a href="javascript:void(0)" class="swin-btn btn-add-to-card">
+                  <a href="javascript:void(0)" class="swin-btn btn-add-to-card"  data-id="<?=$f->id?>">
                     <i class="fa fa-shopping-basket"></i>
                   </a>
                 </div>
@@ -111,3 +111,25 @@ $foods = $data['foods'];
     </div>
   </div>
 </div>
+<script>
+      $(document).ready(function(){
+        $('.add-to-card').click(function(){
+            var idSP = $(this).attr('data-id') 
+            var qty = $('.txtQty').val()
+            console.log(qty)
+
+            // $.ajax({
+            //     url:"cart.php",
+            //     data:{
+            //         id:idSP  // $_POST['id']
+            //     },
+            //     type:"POST",
+            //     success:function(result){ //result: response from server
+            //         //console.log(result)
+            //         $('.name-food').html(result)
+            //         $('#myModal').modal('show')
+            //     }
+            // })
+        })
+      })
+    </script>

@@ -51,6 +51,11 @@
                         <td><a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o fa-2x"></i></a></td>
                     </tr>
                     <?php endforeach?>
+                    <tr>
+                        <td colspan="3" style="font-size:20px; text-align:right">Tổng tiền:</td>
+                        <td  style="font-size:20px; color:blue"><?=number_format($data->totalPrice)?> vnd</td>
+                        <td></td>
+                    </tr>
 
                     </tbody>
                 </table>     
