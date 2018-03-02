@@ -60,7 +60,7 @@ $foods = $data['foods'];
                       <i class="fa fa-minus"></i>
                     </a>
                   </div>
-                  <div class="add-to-cart" data-id="<?=$food->id?>">
+                  <div class="add-to-cart" id="add-to-cart" data-id="<?=$food->id?>">
                     <a href="javascript:void(0)" class="swin-btn">
                       <span>Add To Cart</span>
                     </a>
@@ -111,25 +111,25 @@ $foods = $data['foods'];
     </div>
   </div>
 </div>
+
 <script>
       $(document).ready(function(){
-        $('.add-to-card').click(function(){
+        $('#add-to-cart').click(function(){ 
             var idSP = $(this).attr('data-id') 
             var qty = $('.txtQty').val()
-            console.log(qty)
-
-            // $.ajax({
-            //     url:"cart.php",
-            //     data:{
-            //         id:idSP  // $_POST['id']
-            //     },
-            //     type:"POST",
-            //     success:function(result){ //result: response from server
-            //         //console.log(result)
-            //         $('.name-food').html(result)
-            //         $('#myModal').modal('show')
-            //     }
-            // })
+            $.ajax({
+                url:"cart.php",
+                data:{
+                    id:idSP , // $_POST['id']
+                    quantity: qty // $_POST['quantity]
+                },
+                type:"POST",
+                success:function(result){ //result: response from server
+                    //console.log(result)
+                    $('.name-food').html(result)
+                    $('#myModal').modal('show')
+                }
+            })
         })
       })
     </script>

@@ -42,7 +42,7 @@
                         <td><?=number_format($sanpham['item']->price)?> vnd</td>
                         <td>
                         <select name="product-qty" id="product-qty" class="form-control" width="50">
-                        <?php for($i=1; $i<=5; $i++):?>
+                        <?php for($i=1; $i<=10; $i++):?>
                         <option value="<?=$i?>" <?=$i == $sanpham['qty'] ? "selected": ''?>><?=$i?></option>
                         <?php endfor?>
                         </select>

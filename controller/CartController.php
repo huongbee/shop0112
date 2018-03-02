@@ -8,7 +8,7 @@ class CartController {
 
     function addToCart(){
         $id = $_POST['id'];
-        $qty = 1;
+        $qty = isset($_POST['quantity']) ?  $_POST['quantity'] : 1;
 
         $model = new CartModel;
         $food = $model->selectFoodById($id);
