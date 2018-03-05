@@ -50,13 +50,15 @@
                         <?php endfor?>
                         </select>
                         </td>
-                        <td><?=number_format($sanpham['price'])?> vnd</td>
+                        <td class="detailPrice-<?=$idSP?>">
+                            <?=number_format($sanpham['price'])?> vnd
+                        </td>
                         <td><a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o fa-2x"></i></a></td>
                     </tr>
                     <?php endforeach?>
                     <tr>
                         <td colspan="3" style="font-size:20px; text-align:right">Tổng tiền:</td>
-                        <td  style="font-size:20px; color:blue"><?=number_format($data->totalPrice)?> vnd</td>
+                        <td  style="font-size:20px; color:blue" class="totalPrice"><?=number_format($data->totalPrice)?> vnd</td>
                         <td></td>
                     </tr>
 
@@ -168,8 +170,14 @@ $(document).ready(function(){
                 action: action
             },
             type:"POST",
+            dataType:'JSON',
             success:function(result){ 
-                console.log(result)
+                //console.log(result)
+                var totalPrice = result.totalPrice
+                var detailPrice = result.detailPrice
+
+                $('.totalPrice').text(totalPrice)
+                $('.detailPrice-'+idSP).text(detailPrice)
             }
         })
     })

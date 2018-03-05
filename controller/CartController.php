@@ -23,10 +23,26 @@ class CartController {
         //print_r($_SESSION['cart']);
     }
     function updateCart(){
-        echo $id = $_POST['id'];
-        echo $qty = $_POST['quantity'];
+        $id = $_POST['id'];
+        $qty = $_POST['quantity'];
         //update
 
+        $model = new CartModel;
+        $food = $model->selectFoodById($id);
+
+        $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+        $cart = new Cart($oldCart);
+        $cart->update($food,$qty);
+
+        $_SESSION['cart'] = $cart;
+        
+        $arrResult = [
+            'totalPrice' => number_format($cart->totalPrice).' vnd',
+            'detailPrice' => number_format($cart->items[$id]['price']).' vnd'
+        ];
+        echo json_encode($arrResult); 
+
+        //print_r($_SESSION['cart']);
     }
 }
 
