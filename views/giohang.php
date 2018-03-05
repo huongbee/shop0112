@@ -37,7 +37,7 @@
                         //print_r($data->items);
                     ?>
                     <?php foreach($data->items as $idSP => $sanpham):?>
-                    <tr>
+                    <tr class="productInfo-<?=$idSP?>">
                         <td>
                         <img src="public/source/assets/images/hinh_mon_an/<?=$sanpham['item']->image?>" width="150px">
                         <p><br><b><?=$sanpham['item']->name?></b></p>
@@ -53,7 +53,11 @@
                         <td class="detailPrice-<?=$idSP?>">
                             <?=number_format($sanpham['price'])?> vnd
                         </td>
-                        <td><a href="#" class="remove" title="Remove this item"><i class="fa fa-trash-o fa-2x"></i></a></td>
+                        <td>
+                            <a class="remove" data-id="<?=$idSP?>" title="Remove this item">
+                                <i class="fa fa-trash-o fa-2x"></i>
+                            </a>
+                        </td>
                     </tr>
                     <?php endforeach?>
                     <tr>
@@ -179,6 +183,28 @@ $(document).ready(function(){
                 $('.totalPrice').text(totalPrice)
                 $('.detailPrice-'+idSP).text(detailPrice)
             }
+        })
+    })
+
+    $('.remove').click(function(){
+        var idSP = $(this).attr('data-id');
+        $.ajax({
+            url:'cart.php',
+            data:{
+                id:idSP,
+                action:"delete"
+            },
+            type:"POST",
+            success:function(result){
+                //console.log(result)
+                $('.totalPrice').text(result)
+                $('.productInfo-'+idSP).hide(500)
+            },
+            error:function(){
+
+            }
+        }).done(function(result){
+            //console.log(result)
         })
     })
 })

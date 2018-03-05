@@ -44,6 +44,19 @@ class CartController {
 
         //print_r($_SESSION['cart']);
     }
+
+    function deleteCart(){
+        $id = $_POST['id'];
+
+        $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+
+        $_SESSION['cart'] = $cart;
+
+        echo number_format($cart->totalPrice).' vnd';
+        //print_r($_SESSION['cart']);
+    }
 }
 
 
