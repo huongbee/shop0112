@@ -54,7 +54,7 @@ class CartController {
 
         $_SESSION['cart'] = $cart;
 
-        echo number_format($cart->totalPrice).' vnd';
+        echo number_format($cart->totalPrice);
         //print_r($_SESSION['cart']);
     }
 }
