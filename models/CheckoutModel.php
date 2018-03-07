@@ -9,15 +9,17 @@ class CheckoutModel extends DBConnect{
         return $this->getLastId();
     }
 
-    function insertBill($idCustomer,$dateOrder,$total,$token,$tokenDate){
-        $sql = "INSERT INTO bills(id_customer,date_order,total,token,token_date)
-                VALUES($idCustomer,'$dateOrder',$total,'$token','$tokenDate')";
+    function insertBill($idCustomer,$dateOrder,$total,$token,$tokenDate,$note){
+        $sql = "INSERT INTO bills(id_customer,date_order,total,token,token_date,note)
+                VALUES($idCustomer,'$dateOrder',$total,'$token','$tokenDate','$note')";
         $this->executeQuery($sql); 
         return $this->getLastId();
     }
 
-    function insertBillDetail(){
-        
+    function insertBillDetail($idBill,$idFood,$quantity,$price){
+        $sql = "INSERT INTO bill_detail(id_bill,id_food,quantity,price)
+                VALUES($idBill,$idFood,$quantity,$price)";
+        return $this->executeQuery($sql); 
     }
 }
 
