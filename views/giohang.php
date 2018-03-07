@@ -94,13 +94,13 @@
                                     <span>Đặt hàng</span>
                                 </h3>
                             </div>
-                            <form>
+                            <form method="post">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </div>
-                                        <input type="text" placeholder="Fullname" class="form-control">
+                                        <input type="text" placeholder="Fullname" class="form-control" require name="fullname">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -108,7 +108,7 @@
                                         <div class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </div>
-                                        <input type="text" placeholder="Email" class="form-control">
+                                        <input type="email" placeholder="Email" class="form-control" require name="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -116,7 +116,7 @@
                                         <div class="input-group-addon">
                                             <div class="fa fa-map-marker"></div>
                                         </div>
-                                        <input type="text" placeholder="Address" class="form-control">
+                                        <input type="text" placeholder="Address" class="form-control" require name="address">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -124,18 +124,18 @@
                                         <div class="input-group-addon">
                                             <div class="fa fa-phone"></div>
                                         </div>
-                                        <input type="text" placeholder="Phone" class="form-control">
+                                        <input type="text" placeholder="Phone" class="form-control" require name="phone">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea placeholder="Message" class="form-control"></textarea>
+                                    <textarea placeholder="Message" class="form-control" name="note"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <div class="swin-btn-wrap center">
-                                        <a href="#" class="swin-btn center form-submit">
+                                        <button type="submit" class="swin-btn center form-submit" name="btnCheckout">
                                             <span>Checkout</span>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </form>

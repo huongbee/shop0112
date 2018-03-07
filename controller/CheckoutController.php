@@ -13,6 +13,10 @@ class CheckoutController extends Controller{
         // die;
         return $this->loadView('giohang','Giỏ hàng của bạn',$cart);
     }
+
+    function postCheckout(){
+        print_r($_POST);
+    }
 }
 
 
