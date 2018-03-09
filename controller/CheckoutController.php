@@ -31,7 +31,7 @@ class CheckoutController extends Controller{
         //luu khach hang
         $idCustomer = $model->insertCustomer($name,$email,$phone,$address);
         if(!$idCustomer){
-            $_SESSION['message'] = "Đặt hàng không thành công. Vui lòng kiểm ra lại";
+            $_SESSION['error'] = "1. Đặt hàng không thành công. Vui lòng kiểm ra lại";
             header('Location:checkout.php');
             return;
         }
@@ -46,10 +46,11 @@ class CheckoutController extends Controller{
         $tokenDate = date('Y-m-d H:i:s',time());
         $idBill = $model->insertBill($idCustomer,$dateOrder,$total,$token,$tokenDate,$note);
 
+        //var_dump($idBill);die;
         if(!$idBill){
             //xoá customer vừa insert
             $model->deleteRecentCustomer($idCustomer);
-            $_SESSION['message'] = "Đặt hàng không thành công. Vui lòng kiểm ra lại";
+            $_SESSION['error'] = "2. Đặt hàng không thành công. Vui lòng kiểm ra lại";
             header('Location:checkout.php');
             return;
         }
@@ -58,7 +59,20 @@ class CheckoutController extends Controller{
         foreach($cart->items as $idFood=>$food){
             $quantity = $food['qty'];
             $price = $food['price'];
-            $model->insertBillDetail($idBill,$idFood,$quantity,$price);
+            $billDetail = $model->insertBillDetail($idBill,$idFood,$quantity,$price);
+
+            //var_dump($billDetail);die;
+            if(!$billDetail){
+                //delete? customer,bill,bill_detail?
+                //xoá customer vừa insert
+                $model->deleteRecentBillDetail($idBill);
+                $model->deleteRecentBill($idBill);
+                $model->deleteRecentCustomer($idCustomer);
+                
+                $_SESSION['error'] = "3. Đặt hàng không thành công. Vui lòng kiểm ra lại";
+                header('Location:checkout.php');
+                return;
+            }
         }
         unset($_SESSION['cart']);
         unset($cart);
