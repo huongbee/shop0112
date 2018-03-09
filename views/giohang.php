@@ -1,7 +1,7 @@
 <?php
 // print_r($data);
 // die;
-
+if(!isset($_SESSION)) session_start();
 ?>
     <div class="page-container">
         <div data-bottom-top="background-position: 50% 50px;" data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -50px;"
@@ -25,6 +25,15 @@
                 <div class="container">
                     <div class="section-content">
                         <div class="swin-sc swin-sc-title style-2">
+
+                            <?php if(isset($_SESSION['message'])):?>
+                                <div class="alert alert-success">
+                                    <?php echo $_SESSION['message'];
+                                        unset($_SESSION['message']);
+                                    ?>
+                                </div>
+                            <?php endif?>
+
                             <h3 class="title">
                                 <span id="message">
                                     <?=$data->totalPrice!=0 ? 'Chi tiết giỏ hàng':'Giỏ hàng rỗng'?>

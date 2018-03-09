@@ -2,6 +2,7 @@
 include_once 'Controller.php';
 include_once 'helper/Cart.php';
 include_once 'models/CheckoutModel.php';
+include_once 'helper/functions.php';
 
 if(!isset($_SESSION)) session_start();
 
@@ -29,17 +30,29 @@ class CheckoutController extends Controller{
         $model = new CheckoutModel;
         //luu khach hang
         $idCustomer = $model->insertCustomer($name,$email,$phone,$address);
+        if(!$idCustomer){
+            $_SESSION['message'] = "Đặt hàng không thành công. Vui lòng kiểm ra lại";
+            header('Location:checkout.php');
+            return;
+        }
 
         // luu hoa don
         $dateOrder = date('Y-m-d',time());
-
         $oldCart = isset($_SESSION['cart']) ? $_SESSION['cart'] : null;
         $cart = new Cart($oldCart);
         $total = $cart->totalPrice;
 
-        $token = '';
+        $token = createToken();
         $tokenDate = date('Y-m-d H:i:s',time());
         $idBill = $model->insertBill($idCustomer,$dateOrder,$total,$token,$tokenDate,$note);
+
+        if(!$idBill){
+            //xoá customer vừa insert
+            $model->deleteRecentCustomer($idCustomer);
+            $_SESSION['message'] = "Đặt hàng không thành công. Vui lòng kiểm ra lại";
+            header('Location:checkout.php');
+            return;
+        }
 
         //luu detail
         foreach($cart->items as $idFood=>$food){
@@ -47,10 +60,13 @@ class CheckoutController extends Controller{
             $price = $food['price'];
             $model->insertBillDetail($idBill,$idFood,$quantity,$price);
         }
-        //$token = '';
-        //xoá session cart
+        unset($_SESSION['cart']);
+        unset($cart);
+
         //gui mail
-        //echo "success";
+
+        $_SESSION['message'] = "Đặt hàng thành công. Vui lòng kiểm ra email để xác nhận đơn hàng";
+        header('Location:checkout.php');
         
     }
 }

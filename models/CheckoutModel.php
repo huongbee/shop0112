@@ -21,6 +21,11 @@ class CheckoutModel extends DBConnect{
                 VALUES($idBill,$idFood,$quantity,$price)";
         return $this->executeQuery($sql); 
     }
+
+    function deleteRecentCustomer($idCustomer){
+        $sql = "DELETE FROM customers WHERE id=$idCustomer";
+        return $this->executeQuery($sql);
+    }
 }
 
 
