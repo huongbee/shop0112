@@ -3,6 +3,7 @@ include_once 'Controller.php';
 include_once 'helper/Cart.php';
 include_once 'models/CheckoutModel.php';
 include_once 'helper/functions.php';
+include_once 'helper/mailer/mailer.php';
 
 if(!isset($_SESSION)) session_start();
 
@@ -78,6 +79,19 @@ class CheckoutController extends Controller{
         unset($cart);
 
         //gui mail
+        $subject = "Xác nhận đơn hàng DH00".$idBill;
+
+        $tokenTime = time($tokenDate);
+        $link = "http://localhost/shop0112/accept-order/$token/$tokenTime";
+        $content = "
+                    Chào bạn $name,<br/>
+                    Cảm ơn bạn đã đặt hàng tại website của chúng tôi.<br/>
+                    Vui lòng chọn vào link sau để xác nhận đơn hàng:
+                    $link
+                    <br/>
+                    Thanks and Best Regard.
+                    ";
+        mailer($email, $name,$subject, $content);
 
         $_SESSION['message'] = "Đặt hàng thành công. Vui lòng kiểm ra email để xác nhận đơn hàng";
         header('Location:checkout.php');
