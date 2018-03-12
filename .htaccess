@@ -1,8 +1,13 @@
 RewriteEngine On
-
+RewriteBase /shop0112/
 #this is comment
 
+
+RewriteRule ^accept-order/([a-zA-Z0-9]*)/([0-9]+)$ accept-order.php?token=$1&time=$2 
+
 RewriteRule ^([a-zA-Z0-9-]*)-([0-9]+).html$ detail-food.php?alias=$1&id=$2
+
+
 
 RewriteRule ^trang-chu.html$ index.php
 RewriteRule ^lien-he.html$ contact.php

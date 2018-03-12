@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?=$title?></title>
+    <base href="http://localhost/shop0112/">
     <!-- Bootstrap CSS-->
     <link href="public/source/assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome-->
