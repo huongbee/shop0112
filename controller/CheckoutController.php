@@ -3,6 +3,7 @@ include_once 'Controller.php';
 include_once 'helper/Cart.php';
 include_once 'models/CheckoutModel.php';
 include_once 'helper/functions.php';
+include_once 'helper/mailer/mailer.php';
 
 if(!isset($_SESSION)) session_start();
 
@@ -74,10 +75,55 @@ class CheckoutController extends Controller{
                 return;
             }
         }
+        
+        //gui mail
+        $subject = "Xác nhận đơn hàng DH00".$idBill;
+
+        $tokenTime = time($tokenDate);
+        $link = "http://localhost/shop0112/accept-order/$token/$tokenTime";
+
+
+        $tableContent = '
+        <table border="1" border-spacing="0px" width="800px">
+            <thead style="background-color:#f3f3f3">
+                <th>Thông tin sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Tổng tiền</th>
+            </thead>
+            <tbody>';
+        foreach($cart->items as $idFood=>$food){
+        $tableContent .="
+                <tr>
+                    <td style='text-align:center;'>".$food['item']->name."</td>
+                    <td style='text-align:right'>".$food['qty']."</td>
+                    <td style='text-align:right'>".$food['item']->price."</td>
+                    <td style='text-align:right'>".$food['price']."</td>
+                </tr>";
+        }
+        $tableContent.="
+                <tr>
+                    <td style='text-align:right;' colspan='3'>Tổng cộng</td>
+                    <td style='text-align:right'>".$cart->totalPrice."</td>
+                </tr>";
+
+        $tableContent.='</tbody></table>';
+        $content = "
+                    Chào bạn $name,<br/>
+                    Cảm ơn bạn đã đặt hàng tại website của chúng tôi.<br/>
+                    Vui lòng chọn vào link sau để xác nhận đơn hàng:
+                    $link
+                    <br/>
+                    <h3>Thông tin đơn hàng của bạn:</h3>
+                    <br/>
+                    $tableContent                    
+                    <br/>
+                    Thanks and Best Regard.
+                    ";
+        mailer($email, $name,$subject, $content);
+
         unset($_SESSION['cart']);
         unset($cart);
-
-        //gui mail
 
         $_SESSION['message'] = "Đặt hàng thành công. Vui lòng kiểm ra email để xác nhận đơn hàng";
         header('Location:checkout.php');
