@@ -84,7 +84,11 @@ class CheckoutController extends Controller{
 
 
         $tableContent = '
+<<<<<<< HEAD
         <table border="1" cellspacing="0px" cellpadding="0px" width="800px">
+=======
+        <table border="1" border-spacing="0px" width="800px">
+>>>>>>> 482b91b54b4c0216edd5f69500a26f5a0ee17dcf
             <thead style="background-color:#f3f3f3">
                 <th>Thông tin sản phẩm</th>
                 <th>Số lượng</th>
