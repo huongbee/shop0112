@@ -45,6 +45,7 @@ class CheckoutController extends Controller{
 
         $token = createToken();
         $tokenDate = date('Y-m-d H:i:s',time());
+        $tokenTime = time($tokenDate);
         $idBill = $model->insertBill($idCustomer,$dateOrder,$total,$token,$tokenDate,$note);
 
         //var_dump($idBill);die;
@@ -79,16 +80,11 @@ class CheckoutController extends Controller{
         //gui mail
         $subject = "Xác nhận đơn hàng DH00".$idBill;
 
-        $tokenTime = time($tokenDate);
         $link = "http://localhost/shop0112/accept-order/$token/$tokenTime";
 
 
         $tableContent = '
-<<<<<<< HEAD
-        <table border="1" cellspacing="0px" cellpadding="0px" width="800px">
-=======
         <table border="1" border-spacing="0px" width="800px">
->>>>>>> 482b91b54b4c0216edd5f69500a26f5a0ee17dcf
             <thead style="background-color:#f3f3f3">
                 <th>Thông tin sản phẩm</th>
                 <th>Số lượng</th>
@@ -137,15 +133,27 @@ class CheckoutController extends Controller{
 
     function acceptOrder(){
         $token = $_GET['token'];
-        $time = $_GET['time'];
+        $time = strtotime("+1 day",$_GET['time']); // 1521111374 
+        //$tokenDate = strtotime($bill->token_date); 
+        $timeCheck = strtotime(date("Y-m-d H:i:s",time())); //1521025285
 
         $model = new CheckoutModel;
         $bill = $model->findBillByToken($token);
 
-        print_r($bill);
+        if(!$bill){
+            $_SESSION['error'] = "Đường dẫn bạn nhập vào không tồn tại....";
+        }
+        else{
 
-        if(!$bill)
-            echo "Đường dẫn bạn nhập vào không tồn tại....";
+            if($timeCheck > $time){
+                $_SESSION['error'] =  "Thời gian xác nhận đơn hàng đã hết. Vui lòng đặt hàng lại";
+            } 
+            else{
+                $model->updateStatusBill($bill->id);
+                $_SESSION['message'] = "Xác nhận đơn hàng thành công. Chúng tôi sẽ sớm liên hệ ";
+            }
+        }
+        header('location:http://localhost/shop0112/checkout.php');
     }
 }
 

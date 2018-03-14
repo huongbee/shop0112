@@ -42,6 +42,13 @@ class CheckoutModel extends DBConnect{
         return $this->loadOneRow($sql);
     }
 
+    function updateStatusBill($idBill){
+        $sql = "UPDATE bills 
+                SET token='', token_date='', status=1 
+                WHERE id=$idBill";
+        return $this->executeQuery($sql);
+    }
+
 }
 
 
